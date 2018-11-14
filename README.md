@@ -9,9 +9,9 @@ Elastic Stack components:
 4. X-Pack (an elastic stack extension used for security, monitoring, alerting, reporting, graph, and machine learning)
 
 
-[Elastic Stack 1](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/stack1.jpg)
+![Elastic Stack 1](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/images/stack1.jpg)
 
-[Elastic stack 2](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/stack2.png)
+![Elastic stack 2](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/images/stack2.png)
 
 ### Elasticsearch
 
@@ -27,13 +27,13 @@ An Elasticsearch cluster can contain multiple indices (databases), which in turn
 
 Elasticsearch structure differs from a traditional SQL database. Below you can find an analogy:
 
-[Elastic vs. SQL](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/dbs_nosql_comparison.png)
+![Elastic vs. SQL](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/images/dbs_nosql_comparison.png)
 
 Elastic stores documents in an inverted index. An inverted index holds the following information.
 * the occurrence of a word in a document
 * the position of that particular word in a document
 
-[Inverted Index](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/inverted_index.png)
+![Inverted Index](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/images/inverted_index.png)
 
 ### Instalation
 

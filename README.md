@@ -86,3 +86,46 @@ Setup elasticsearch and deamonize elasticsearch service:
 /bin/systemctl enable elasticsearch.service
 /bin/systemctl start elasticsearch.service
 ```
+
+Verify if elasticsearch service has started succesfully:
+
+```
+service elasticsearch status
+● elasticsearch.service - Elasticsearch
+   Loaded: loaded (/usr/lib/systemd/system/elasticsearch.service; enabled; vendor preset: enabled)
+   Active: active (running) since Wed 2018-11-14 05:39:19 EST; 2min 49s ago
+     Docs: http://www.elastic.co
+ Main PID: 428 (java)
+    Tasks: 38 (limit: 4915)
+   CGroup: /system.slice/elasticsearch.service
+           ├─428 /usr/bin/java -Xms1g -Xmx1g -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:+AlwaysPreTouch -Xss1m -Djava.awt.headless=true -Dfile.encoding=U
+           └─672 /usr/share/elasticsearch/modules/x-pack-ml/platform/linux-x86_64/bin/controller
+
+Nov 14 05:39:19 elastic systemd[1]: Started Elasticsearch.
+```
+
+
+```
+curl -XGET 127.0.0.1:9200
+{
+  "name" : "JAgUjQT",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "WK1Kl1ovTeuNDMq8jLDerA",
+  "version" : {
+    "number" : "6.4.3",
+    "build_flavor" : "default",
+    "build_type" : "deb",
+    "build_hash" : "fe40335",
+    "build_date" : "2018-10-30T23:17:19.084789Z",
+    "build_snapshot" : false,
+    "lucene_version" : "7.4.0",
+    "minimum_wire_compatibility_version" : "5.6.0",
+    "minimum_index_compatibility_version" : "5.0.0"
+  },
+  "tagline" : "You Know, for Search"
+}
+```
+
+Check http access from Host
+
+![Host http access]

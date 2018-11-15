@@ -79,7 +79,7 @@ Edit elasticsearch config file so we can have host http access
  Change network.host to 0.0.0.0 and host.http: 9200
  ```
 
-Setup elasticsearch and deamonize elasticsearch service:
+Load the new configuration and start elastic service:
 
 ```
 /bin/systemctl daemon-reload
@@ -87,7 +87,7 @@ Setup elasticsearch and deamonize elasticsearch service:
 /bin/systemctl start elasticsearch.service
 ```
 
-Verify if elasticsearch service has started succesfully:
+Verify if elasticsearch service has started successfully:
 
 ```
 service elasticsearch status
@@ -104,6 +104,7 @@ service elasticsearch status
 Nov 14 05:39:19 elastic systemd[1]: Started Elasticsearch.
 ```
 
+Ensure Elasticsearch is running and accessible on port 9200
 
 ```
 curl -XGET 127.0.0.1:9200
@@ -126,6 +127,86 @@ curl -XGET 127.0.0.1:9200
 }
 ```
 
+
 Check http access from Host
 
-![Host http access]
+![Host http access](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/images/Host_http_access.png)
+
+
+### RESTful API & Query DSL
+
+Elasticsearch fundamenatally works via HTTP requests and JSON data. Any language ortool that can handle HTTP can use Elasticsearch.
+We use curl or Kibana UI to interact with the sever.
+
+Query DSL is in the request body as JSON
+
+Ex:
+
+```
+GET /bank/_search
+{
+  "query": { "match_all": {} },
+  "sort": { "balance": { "order": "desc" } }
+}
+
+```
+
+![REST](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/images/REST.jpeg)
+
+Restfull architecture:
+Ref: https://www.service-architecture.com/articles/web-services/representational_state_transfer_rest.html
+
+Representational State Transfer (REST) is a style of architecture based on a set of principles that describe how networked resources are defined and addressed
+
+A couple of characteristics:
+
+    * client-server architecture
+    * statefullness
+    * cacheability(not needed but there are provisions to do it)
+    * layered system 
+    * code on demand (that is the server can send in a response code to a client to execute, i.e Javascript)
+    * Uniform interface(this specification makes it easy for an application to be technology agnostic can work with Java/Python/...as long as the standard is maintained)
+
+An application or architecture considered RESTful or REST-style is characterized by:
+
+    * State and functionality are divided into distributed resources
+    * Every resource is uniquely addressable using a uniform and minimal set of commands (typically using HTTP commands of GET, POST, PUT, or DELETE over the Internet)
+    * The protocol is client/server, stateless, layered, and supports caching
+    
+
+### HTTP protocol
+
+HTTP is used to retrieve HTML files from different locations over Internet, and an HTTP request has the following components:
+
+    Method is similar to a verb: GET/PUT/POST/DELETE
+        POST Insert or Update data
+        PUT add new data
+    Version HTTP 1/1 or 2
+    HOST
+    URL
+    Body(extra info sent to the server)
+    Headers(User-Agent,Content-type) extra metadata headers needed for server communication
+
+
+HTTP request:
+
+```
+GET / HTTP/1.1
+Host: developer.mozilla.org
+Accept-Language: fr
+```
+
+HTTP response:
+
+```
+Read the response sent by the server:
+
+HTTP/1.1 200 OK
+Date: Sat, 09 Oct 2010 14:28:02 GMT
+Server: Apache
+Last-Modified: Tue, 01 Dec 2009 20:18:22 GMT
+ETag: "51142bc1-7449-479b075b2891b"
+Accept-Ranges: bytes
+Content-Length: 29769
+Content-Type: text/html
+```

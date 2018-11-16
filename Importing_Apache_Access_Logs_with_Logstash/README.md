@@ -3,7 +3,7 @@
 Logstash is the server component that processes incoming logs and feeds to ES.
 It's an open source, server-side data processing pipeline that ingests data from a multitude of sources simultaneously, transforms it, and then sends it to your favorite “stash.” (Ours is Elasticsearch, naturally.)
 
-['Official docs'](https://www.elastic.co/products/logstash)
+![Official docs](https://www.elastic.co/products/logstash)
 
 !['Logstash'](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/images/logstash1.png)
 
@@ -25,7 +25,7 @@ wget http://media.sundog-soft.com/es/access_log
 
 ### Create logstash configuration file
 
-['Logstash config ref'](https://www.elastic.co/guide/en/logstash/current/config-examples.html)
+![Logstash config ref](https://www.elastic.co/guide/en/logstash/current/config-examples.html)
 
 ```
 input {

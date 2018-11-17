@@ -89,6 +89,35 @@ Query OK, 1682 rows affected, 1691 warnings (0.16 sec)
 Records: 1682  Deleted: 0  Skipped: 0  Warnings: 1691
 ```
 
+
+### Mysql import from logstash
+
+```
+root@elastic:~#  /usr/share/logstash/bin/logstash -f  /etc/logstash/conf.d/mariadb.conf
+WARNING: Could not find logstash.yml which is typically located in $LS_HOME/config or /etc/logstash. You can specify the path using --path.settings. Continuing using the defaults
+Could not find log4j2 configuration at path /usr/share/logstash/config/log4j2.properties. Using default config which logs errors to the console
+[WARN ] 2018-11-17 06:38:42.291 [LogStash::Runner] multilocal - Ignoring the 'pipelines.yml' file because modules or command line options are specified
+[INFO ] 2018-11-17 06:38:42.326 [LogStash::Runner] runner - Starting Logstash {"logstash.version"=>"6.5.0"}
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+{"title":"Toy Story (1995)","releasedate":"1995-01-01T05:00:00.000Z","@timestamp":"2018-11-17T11:38:55.309Z","movieid":1,"@version":"1"}
+{"title":"GoldenEye (1995)","releasedate":"1995-01-01T05:00:00.000Z","@timestamp":"2018-11-17T11:38:55.340Z","movieid":2,"@version":"1"}
+{"title":"Four Rooms (1995)","releasedate":"1995-01-01T05:00:00.000Z","@timestamp":"2018-11-17T11:38:55.342Z","movieid":3,"@version":"1"}
+{"title":"Get Shorty (1995)","releasedate":"1995-01-01T05:00:00.000Z","@timestamp":"2018-11-17T11:38:55.343Z","movieid":4,"@version":"1"}
+{"title":"Copycat (1995)","releasedate":"1995-01-01T05:00:00.000Z","@timestamp":"2018-11-17T11:38:55.344Z","movieid":5,"@version":"1"}
+{"title":"Shanghai Triad (Yao a yao yao dao waipo qiao) (1995)","releasedate":"1995-01-01T05:00:00.000Z","@timestamp":"2018-11-17T11:38:55.345Z","movieid":6,"@version":"1"}
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+{"title":"Mat' i syn (1997)","releasedate":"1998-02-06T05:00:00.000Z","@timestamp":"2018-11-17T11:39:04.056Z","movieid":1678,"@version":"1"}
+{"title":"B. Monkey (1998)","releasedate":"1998-02-06T05:00:00.000Z","@timestamp":"2018-11-17T11:39:04.056Z","movieid":1679,"@version":"1"}
+{"title":"Sliding Doors (1998)","releasedate":"1998-01-01T05:00:00.000Z","@timestamp":"2018-11-17T11:39:04.088Z","movieid":1680,"@version":"1"}
+{"title":"You So Crazy (1994)","releasedate":"1994-01-01T05:00:00.000Z","@timestamp":"2018-11-17T11:39:04.089Z","movieid":1681,"@version":"1"}
+{"title":"Scream of Stone (Schrei aus Stein) (1991)","releasedate":"1996-03-08T05:00:00.000Z","@timestamp":"2018-11-17T11:39:04.089Z","movieid":1682,"@version":"1"}
+[INFO ] 2018-11-17 06:39:05.348 [[main]>worker0] pipeline - Pipeline has terminated {:pipeline_id=>"main", :thread=>"#<Thread:0x251b1093 run>"}
+```
+
 ### Check import
 
 ```

@@ -5,7 +5,7 @@ It's an open source, server-side data processing pipeline that ingests data from
 
 ![Official docs](https://www.elastic.co/products/logstash)
 
-!['Logstash'](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/images/logstash1.png)
+![Logstash](https://github.com/mpruna/IMPORTING_DATA_INTO_ELASTICSEARCH/blob/master/images/logstash1.png)
 
 Logstash capabilities:
 

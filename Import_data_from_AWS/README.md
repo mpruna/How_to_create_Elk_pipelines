@@ -14,9 +14,6 @@ Platforms as a service remove the need for organizations to manage the underlyin
 
 ![IMG](images/PaaS.png)
 
-References:
-  * https://en.wikipedia.org/wiki/Amazon_Web_Services
-  * https://aws.amazon.com/types-of-cloud-computing/
   
 ### Logstash pipeline
 
@@ -63,3 +60,6 @@ input {
 }
 ```
 
+References:
+  * https://en.wikipedia.org/wiki/Amazon_Web_Services
+  * https://aws.amazon.com/types-of-cloud-computing/

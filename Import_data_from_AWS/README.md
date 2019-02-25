@@ -12,7 +12,7 @@ Infrastructure as a Service, sometimes abbreviated as IaaS, contains the basic b
 
 Platforms as a service remove the need for organizations to manage the underlying infrastructure (usually hardware and operating systems) and allow you to focus on the deployment and management of your applications. This helps you be more efficient as you don’t need to worry about resource procurement, capacity planning, software maintenance, patching, or any of the other undifferentiated heavy lifting involved in running your application.
 
-![IMG](images/Paas.png)
+![IMG](images/PaaS.png)
 
 References:
   * https://en.wikipedia.org/wiki/Amazon_Web_Services

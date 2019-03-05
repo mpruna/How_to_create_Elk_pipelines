@@ -28,7 +28,7 @@ Also in logstash.conf standard we need to specify aws connection informaiton
 ```buildoutcfg
 input {
 	file {
-		path => "/home/fkane/access_log“
+		path => "/home/praslea/access_log“
 		start_position=> "beginning"
 		ignore_older=> 0
 	}

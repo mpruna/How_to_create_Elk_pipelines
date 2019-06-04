@@ -61,6 +61,24 @@ input {
 }
 ```
 
+### Create an AWS bucket
+
+1) Create a [S3 bucket(Simple Storage Server)](https://aws.amazon.com/s3/)
+2) Upload the a sample apache log
+
+### Create an AWS user
+
+After we create the AWS bucket we need to assign a user to it and add appropriate access rights:
+
+1) Go to IAM (Identity and Access Management) and create a user
+2) Choose programmatic access
+3) Use S3 ReadOnly access permission and attach it to the user
+4) Download the credentials.csv and setup the logstash input section
+
+
+
+### Start Logstash specifing the aws.conf
+
 References:
   * https://en.wikipedia.org/wiki/Amazon_Web_Services
   * https://aws.amazon.com/types-of-cloud-computing/

@@ -75,9 +75,14 @@ After we create the AWS bucket we need to assign a user to it and add appropriat
 3) Use S3 ReadOnly access permission and attach it to the user
 4) Download the credentials.csv and setup the logstash input section
 
+### Start Logstash with aws.conf
 
+```buildoutcfg
+ /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/aws.conf
+```
+### Log ingestion
 
-### Start Logstash specifing the aws.conf
+![IMG](images/aws_apache.png)
 
 References:
   * https://en.wikipedia.org/wiki/Amazon_Web_Services

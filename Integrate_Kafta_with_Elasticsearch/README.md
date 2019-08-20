@@ -70,88 +70,6 @@ zookeeper.connection.timeout.ms=6000
 group.initial.rebalance.delay.ms=0
 ```
 
-<<<<<<< HEAD
-
-### Setup kafka streams
-
-1) Download latest kafka & unpack
-
-```
-wget http://mirror.evowise.com/apache/kafka/2.3.0/kafka_2.12-2.3.0.tgz
-tar -xzf kafka_2.12-2.3.0.tgz
-```
-
-2) Start kafka service
-
-```
-bin/zookeeper-server-start.sh config/zookeeper.properties
-bin/kafka-server-start.sh config/server.properties
-```
-3) Create a kafka topic
-```
-```
-
-4) Create a custom logstash.config file for kafka streaming and start logstash with it
-
-```
- /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/logstash-kafka.conf
-```
-
-5) Start Kafka producers
-
-```
-bin/kafka-console-producer.sh --broker-list localhost:9092 --topic kafka-logs < /home/praslea/access_log
-```
-
-### Successful log ingestion
-
-```
-{
-           "verb" => "GET",
-          "agent" => "\"W3 Total Cache\"",
-       "clientip" => "54.210.20.202",
-          "bytes" => "555",
-       "referrer" => "\"http://sundog-soft.com/product-sitemap.xml\"",
-       "response" => "200",
-        "message" => "54.210.20.202 - - [05/May/2017:18:01:43 +0000] \"GET /product-sitemap.xml HTTP/1.1\" 200 555 \"http://sundog-soft.com/product-sitemap.xml\" \"W3 Total Cache\"",
-        "request" => "/product-sitemap.xml",
-      "timestamp" => "05/May/2017:18:01:43 +0000",
-           "auth" => "-",
-    "httpversion" => "1.1",
-          "ident" => "-",
-       "@version" => "1",
-     "@timestamp" => 2017-05-05T18:01:43.000Z
-}
-{
-           "verb" => "GET",
-          "agent" => "\"W3 Total Cache\"",
-       "clientip" => "54.210.20.202",
-          "bytes" => "658",
-       "referrer" => "\"http://sundog-soft.com/creativo_portfolio-sitemap.xml\"",
-       "response" => "200",
-        "message" => "54.210.20.202 - - [05/May/2017:18:01:44 +0000] \"GET /creativo_portfolio-sitemap.xml HTTP/1.1\" 200 658 \"http://sundog-soft.com/creativo_portfolio-sitemap.xml\" \"W3 Total Cache\"",
-        "request" => "/creativo_portfolio-sitemap.xml",
-      "timestamp" => "05/May/2017:18:01:44 +0000",
-           "auth" => "-",
-    "httpversion" => "1.1",
-          "ident" => "-",
-       "@version" => "1",
-     "@timestamp" => 2017-05-05T18:01:44.000Z
-}
-```
-
-=======
-### Check successful run
-
-```
-root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test
-root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --list --bootstrap-server localhost:9092
-__consumer_offsets
-kafka-logs
-test
-```
-
-Run ok
 
 ### Issues running multiple topics
 
@@ -219,4 +137,85 @@ Correct version from official site
  bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic kafka-logs
 root@elastic:/home/kafka_2.12-2.3.0#
 ```
->>>>>>> 92fdc05d0c1a585259062929bd3464d230861258
+
+### Setup kafka streams
+
+1) Download latest kafka & unpack
+
+```
+wget http://mirror.evowise.com/apache/kafka/2.3.0/kafka_2.12-2.3.0.tgz
+tar -xzf kafka_2.12-2.3.0.tgz
+```
+
+2) Start kafka service
+
+```
+bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/kafka-server-start.sh config/server.properties
+```
+
+### Check successful run
+
+```
+root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test
+root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+__consumer_offsets
+kafka-logs
+test
+```
+
+Run ok
+
+
+3) Create a kafka topic
+```
+```
+
+4) Create a custom logstash.config file for kafka streaming and start logstash with it
+
+```
+ /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/logstash-kafka.conf
+```
+
+5) Start Kafka producers
+
+```
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic kafka-logs < /home/praslea/access_log
+```
+
+### Successful log ingestion
+
+```
+{
+           "verb" => "GET",
+          "agent" => "\"W3 Total Cache\"",
+       "clientip" => "54.210.20.202",
+          "bytes" => "555",
+       "referrer" => "\"http://sundog-soft.com/product-sitemap.xml\"",
+       "response" => "200",
+        "message" => "54.210.20.202 - - [05/May/2017:18:01:43 +0000] \"GET /product-sitemap.xml HTTP/1.1\" 200 555 \"http://sundog-soft.com/product-sitemap.xml\" \"W3 Total Cache\"",
+        "request" => "/product-sitemap.xml",
+      "timestamp" => "05/May/2017:18:01:43 +0000",
+           "auth" => "-",
+    "httpversion" => "1.1",
+          "ident" => "-",
+       "@version" => "1",
+     "@timestamp" => 2017-05-05T18:01:43.000Z
+}
+{
+           "verb" => "GET",
+          "agent" => "\"W3 Total Cache\"",
+       "clientip" => "54.210.20.202",
+          "bytes" => "658",
+       "referrer" => "\"http://sundog-soft.com/creativo_portfolio-sitemap.xml\"",
+       "response" => "200",
+        "message" => "54.210.20.202 - - [05/May/2017:18:01:44 +0000] \"GET /creativo_portfolio-sitemap.xml HTTP/1.1\" 200 658 \"http://sundog-soft.com/creativo_portfolio-sitemap.xml\" \"W3 Total Cache\"",
+        "request" => "/creativo_portfolio-sitemap.xml",
+      "timestamp" => "05/May/2017:18:01:44 +0000",
+           "auth" => "-",
+    "httpversion" => "1.1",
+          "ident" => "-",
+       "@version" => "1",
+     "@timestamp" => 2017-05-05T18:01:44.000Z
+}
+```

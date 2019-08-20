@@ -121,3 +121,20 @@ root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --zookeeper localhost:2
 Topic test is marked for deletion.
 Note: This will have no impact if delete.topic.enable is not set to true.
 ```
+### Another error
+
+```
+root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --create zookeeper:2181 --replication-factor 1 partitions 1 --topic kafka-logs
+Exception in thread "main" java.lang.IllegalArgumentException: Only one of --bootstrap-server or --zookeeper must be specified
+        at kafka.admin.TopicCommand$TopicCommandOptions.checkArgs(TopicCommand.scala:628)
+        at kafka.admin.TopicCommand$.main(TopicCommand.scala:50)
+        at kafka.admin.TopicCommand.main(TopicCommand.scala)
+root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --create Only one of --bootstrap-server or --zookeeper must be specified --replication-factor 1 partitions 1 --topic kafka-logs
+```
+
+Correct version from official site
+
+```
+ bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic kafka-logs
+root@elastic:/home/kafka_2.12-2.3.0#
+```

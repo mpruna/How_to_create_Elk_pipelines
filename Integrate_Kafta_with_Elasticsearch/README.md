@@ -70,6 +70,28 @@ zookeeper.connection.timeout.ms=6000
 group.initial.rebalance.delay.ms=0
 ```
 
+### Config explanation
+
+| Config | Description |
+|---|---|
+num.network.threads | The number of threads that the server uses for receiving requests from the network and sending responses to the network
+broker.id | The broker id for this server 
+num.io.threads | The number of threads that the server uses for processing requests, which may include disk I/O
+socket.send.buffer.bytes | The SO_SNDBUF buffer of the socket server sockets. If the value is -1, the OS default will be used
+socket.receive.buffer.bytes | The SO_RCVBUF buffer of the socket server sockets. If the value is -1, the OS default will be used.
+socket.request.max.bytes | The maximum number of bytes in a socket request
+num.partitions | The default number of log partitions per topic
+num.recovery.threads.per.data.dir | The number of threads per data directory to be used for log recovery at startup and flushing at shutdown
+offsets.topic.replication.factor | The replication factor for the offsets topic (set higher to ensure availability). Internal topic creation will fail until the cluster size meets this replication factor requirement.
+transaction.state.log.replication.factor | The replication factor for the transaction topic (set higher to ensure availability). Internal topic creation will fail until the cluster size meets this replication factor requirement.
+transaction.state.log.min.isr | Overridden min.insync.replicas config for the transaction topic
+log.retention.hours | The number of hours to keep a log file before deleting it (in hours), tertiary to log.retention.ms property
+log.segment.bytes | The maximum size of a single log file
+log.retention.check.interval.ms | The frequency in milliseconds that the log cleaner checks whether any log is eligible for deletion
+zookeeper.connect | Specifies the ZooKeeper connection string in the form hostname:port where host and port are the host and port of a ZooKeeper server
+zookeeper.connection.timeout.ms | The max time that the client waits to establish a connection to zookeeper. If not set, the value in zookeeper.session.timeout.ms is used
+group.initial.rebalance.delay.ms | The amount of time the group coordinator will wait for more consumers to join a new group before performing the first rebalance. 
+
 ### Download latest Kafka
 
 1) Download latest kafka & unpack
@@ -164,5 +186,8 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic kafka-logs < 
 ### Terminology 
 
 * Producers |  Kafka producer is an application that can act as a source of data in a Kafka cluster. A producer can publish messages to one or more Kafka topics.
-* Consumer: Application that receives the messages.
-* Topic: A Topic is a category/feed name to which messages are stored and published.
+* Consumer| Application that receives the messages.
+* Topic | A Topic is a category/feed name to which messages are stored and published.
+
+Ref:
+* https://kafka.apache.org/

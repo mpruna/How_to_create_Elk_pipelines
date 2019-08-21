@@ -70,81 +70,20 @@ zookeeper.connection.timeout.ms=6000
 group.initial.rebalance.delay.ms=0
 ```
 
-
-### Issues running multiple topics
-
-```
-bin/kafka-topics.sh --create zookeeper:2181 --replication-factor 1 partitions 1 --topic kafka.logs
-Exception in thread "main" java.lang.IllegalArgumentException: Only one of --bootstrap-server or --zookeeper must be specified
-        at kafka.admin.TopicCommand$TopicCommandOptions.checkArgs(TopicCommand.scala:628)
-        at kafka.admin.TopicCommand$.main(TopicCommand.scala:50)
-        at kafka.admin.TopicCommand.main(TopicCommand.scala)
-```
-
-Try to delete the ongoing topics
-
-```
-root@elastic:/home/kafka_2.12-2.3.0# history | tail -5
-  518  Exception in thread "main" java.lang.IllegalArgumentException: Only one of --bootstrap-server or --zookeeper must be specified
-  519          at kafka.admin.TopicCommand$TopicCommandOptions.checkArgs(TopicCommand.scala:628)
-  520          at kafka.admin.TopicCommand$.main(TopicCommand.scala:50)
-  521          at kafka.admin.TopicCommand.main(TopicCommand.scala)
-  522  history | tail -5
-```
-### Other
-
-```
-root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --create zookeeper:2181 --replication-factor 1 partitions 1 --topic kafka.logs
-Exception in thread "main" java.lang.IllegalArgumentException: Only one of --bootstrap-server or --zookeeper must be specified
-        at kafka.admin.TopicCommand$TopicCommandOptions.checkArgs(TopicCommand.scala:628)
-        at kafka.admin.TopicCommand$.main(TopicCommand.scala:50)
-        at kafka.admin.TopicCommand.main(TopicCommand.scala)
-root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --create zookeeper localhost:2181 --replication-factor 1 partitions 1 --topic kafka.logs
-Exception in thread "main" java.lang.IllegalArgumentException: Only one of --bootstrap-server or --zookeeper must be specified
-        at kafka.admin.TopicCommand$TopicCommandOptions.checkArgs(TopicCommand.scala:628)
-        at kafka.admin.TopicCommand$.main(TopicCommand.scala:50)
-        at kafka.admin.TopicCommand.main(TopicCommand.scala)
-root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --list --bootstrap-server localhost:9092     
-```
-
-### Delete topics
-
-```
-root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --zookeeper localhost:2181 --describe --topic kafka-logs
-Topic:kafka-logs        PartitionCount:1        ReplicationFactor:1     Configs:
-        Topic: kafka-logs       Partition: 0    Leader: 0       Replicas: 0     Isr: 0
-root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --zookeeper localhost:2181 --describe --topic test
-Topic:test      PartitionCount:1        ReplicationFactor:1     Configs:
-        Topic: test     Partition: 0    Leader: 0       Replicas: 0     Isr: 0
-root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic test
-Topic test is marked for deletion.
-Note: This will have no impact if delete.topic.enable is not set to true.
-```
-### Another error
-
-```
-root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --create zookeeper:2181 --replication-factor 1 partitions 1 --topic kafka-logs
-Exception in thread "main" java.lang.IllegalArgumentException: Only one of --bootstrap-server or --zookeeper must be specified
-        at kafka.admin.TopicCommand$TopicCommandOptions.checkArgs(TopicCommand.scala:628)
-        at kafka.admin.TopicCommand$.main(TopicCommand.scala:50)
-        at kafka.admin.TopicCommand.main(TopicCommand.scala)
-root@elastic:/home/kafka_2.12-2.3.0# bin/kafka-topics.sh --create Only one of --bootstrap-server or --zookeeper must be specified --replication-factor 1 partitions 1 --topic kafka-logs
-```
-
-Correct version from official site
-
-```
- bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic kafka-logs
-root@elastic:/home/kafka_2.12-2.3.0#
-```
-
-### Setup kafka streams
+### Download latest Kafka
 
 1) Download latest kafka & unpack
 
 ```
 wget http://mirror.evowise.com/apache/kafka/2.3.0/kafka_2.12-2.3.0.tgz
 tar -xzf kafka_2.12-2.3.0.tgz
+```
+
+### Sart Kafka topics
+
+```
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic kafka-logs
+root@elastic:/home/kafka_2.12-2.3.0#
 ```
 
 2) Start kafka service
@@ -167,7 +106,9 @@ test
 Run ok
 
 
+
 3) Create a kafka topic
+
 ```
 ```
 
@@ -219,3 +160,9 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic kafka-logs < 
      "@timestamp" => 2017-05-05T18:01:44.000Z
 }
 ```
+
+### Terminology 
+
+* Producers |  Kafka producer is an application that can act as a source of data in a Kafka cluster. A producer can publish messages to one or more Kafka topics.
+* Consumer: Application that receives the messages.
+* Topic: A Topic is a category/feed name to which messages are stored and published.
